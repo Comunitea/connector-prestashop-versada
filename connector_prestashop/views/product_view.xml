@@ -26,7 +26,7 @@
     </record>
 
     <record id="product_product_tree_prestashop_view" model="ir.ui.view">
-        <field name="name">product.product.prestashop.tree</field>
+        <field name="name">product.product.prestashop.list</field>
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_product_tree_view" />
         <field name="arch" type="xml">
@@ -145,7 +145,7 @@
     <record id="product_connector_presta_tree_view" model="ir.ui.view">
         <field name="model">prestashop.product.template</field>
         <field name="arch" type="xml">
-            <tree create="0">
+            <list create="0">
                 <field name="name" />
                 <field name="backend_id" string="Backend" />
                 <field name="date_add" />
@@ -162,7 +162,7 @@
                     string="Export quantity"
                 />
                 <button name="resync" type="object" string="Resync" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -194,7 +194,7 @@
     <record id="combination_connector_presta_tree_view" model="ir.ui.view">
         <field name="model">prestashop.product.combination</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field
                     name="product_template_attribute_value_ids"
@@ -212,7 +212,7 @@
                     string="Export quantity"
                 />
                 <button name="resync" type="object" string="Resync" />
-            </tree>
+            </list>
         </field>
     </record>
 

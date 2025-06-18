@@ -42,15 +42,15 @@
     </record>
 
     <record id="view_prestashop_res_partner_tree" model="ir.ui.view">
-        <field name="name">prestashop.res.partner.tree</field>
+        <field name="name">prestashop.res.partner.list</field>
         <field name="model">prestashop.res.partner</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="backend_id" />
                 <field name="shop_group_id" />
                 <field name="company" />
                 <button name="resync" type="object" string="Resync" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -73,13 +73,13 @@
     </record>
 
     <record id="view_prestashop_address_tree" model="ir.ui.view">
-        <field name="name">prestashop.address.tree</field>
+        <field name="name">prestashop.address.list</field>
         <field name="model">prestashop.address</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="backend_id" />
                 <field name="shop_group_id" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -94,9 +94,9 @@
                         <field name="backend_id" />
                         <field name="prestashop_id" />
                     </form>
-                    <tree>
+                    <list>
                         <field name="backend_id" />
-                    </tree>
+                    </list>
                 </field>
             </field>
         </field>
@@ -121,14 +121,14 @@
     </record>
 
     <record id="view_prestashop_partner_category_tree" model="ir.ui.view">
-        <field name="name">prestashop.res.partner.category.tree</field>
+        <field name="name">prestashop.res.partner.category.list</field>
         <field name="model">prestashop.res.partner.category</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="backend_id" />
                 <field name="prestashop_id" />
                 <field name="name" />
-            </tree>
+            </list>
         </field>
     </record>
 

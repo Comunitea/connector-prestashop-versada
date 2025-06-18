@@ -28,7 +28,7 @@
 <record id="view_prestashop_delivery_carrier_tree" model="ir.ui.view">
     <field name="model">prestashop.delivery.carrier</field>
     <field name="arch" type="xml">
-        <tree>
+        <list>
             <field name="name_ext" />
             <field name="active_ext" />
             <field name="export_tracking" string="Export tracking" />
@@ -36,14 +36,14 @@
             <field name="prestashop_id" />
             <field name="odoo_id" string="Delivery method" />
             <field name="id_reference" string="Id ref." />
-        </tree>
+        </list>
     </field>
 </record>
 
 <record id="action_prestashop_carrier" model="ir.actions.act_window">
     <field name="name">PrestaShop Carriers</field>
     <field name="res_model">prestashop.delivery.carrier</field>
-    <field name="view_mode">tree,form</field>
+    <field name="view_mode">list,form</field>
 </record>
 
 </odoo>
