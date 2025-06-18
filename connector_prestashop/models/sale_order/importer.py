@@ -12,7 +12,7 @@ from odoo.addons.connector.components.mapper import mapping
 from odoo.addons.connector_ecommerce.components.sale_order_onchange import (
     SaleOrderOnChange,
 )
-from odoo.addons.queue_job.exception import FailedJobError, NothingToDoJob
+from odoo.addons.queue_job.exception import FailedJobError
 
 from ...components.exception import OrderImportRuleRetry
 
@@ -40,7 +40,7 @@ class SaleImportRule(Component):
 
     def _rule_never(self, record, mode):
         """Never import the order"""
-        raise NothingToDoJob(
+        raise Exception(
             "Orders with payment modes %s "
             "are never imported." % record["payment"]["method"]
         )
@@ -114,7 +114,7 @@ class SaleImportRule(Component):
         fmt = "%Y-%m-%d %H:%M:%S"
         order_date = datetime.strptime(record["date_add"], fmt)
         if order_date + timedelta(days=max_days) < datetime.now():
-            raise NothingToDoJob(
+            raise Exception(
                 "Import of the order %s canceled "
                 "because it has not been paid since %d "
                 "days" % (order_id, max_days)
@@ -144,7 +144,7 @@ class SaleImportRule(Component):
                     % (ps_state_id,)
                 )
             if state not in self.backend_record.importable_order_state_ids:
-                raise NothingToDoJob(
+                raise Exception(
                     _(
                         "Import of the order with PS ID=%s canceled "
                         "because its state is not importable"
@@ -441,8 +441,8 @@ class SaleOrderImporter(Component):
         rules = self.component(usage="sale.import.rule")
         try:
             return rules.check(self.prestashop_record)
-        except NothingToDoJob as err:
-            # we don't let the NothingToDoJob exception let go out, because if
+        except Exception as err:
+            # we don't let the Exception exception let go out, because if
             # we are in a cascaded import, it would stop the whole
             # synchronization and set the whole job to done
             return str(err)
