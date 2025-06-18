@@ -137,7 +137,7 @@
     <record id="view_order_connector_prestashop_form" model="ir.ui.view">
         <field name="name">sale.order.connector.prestashop.form</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="connector_ecommerce.view_order_connector_form" />
+        <field name="inherit_id" ref="connector_ecommerce.sale_order_view_form" />
         <field name="arch" type="xml">
 
            <page name="connector" position="attributes">

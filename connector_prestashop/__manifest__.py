@@ -6,6 +6,7 @@
         "account",
         "base_vat",  # for vat validation on partner address
         "product",
+        "account_payment_mode"
         "product_multi_category",  # oca/product-attribute
         "product_multi_image",  # oca/product-attribute
         "connector_ecommerce",  # oca/connector-ecommerce
