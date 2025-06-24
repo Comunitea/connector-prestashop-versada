@@ -2,6 +2,10 @@
 # © 2013-2016 Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
+
+# MÓDULO FAKE, YA QUE EL PR DE V18 ESTÁ EN DRAFT Y DEPENDIENDO DEL NUEVO BANK PAYMENT ALTERNATIVE
+# TODO quitar esto y vigilar si OCA lo incorpora con el BANK PAYMENT TRADICCIONAL
+
 {
     "name": "Connector for E-Commerce",
     "version": "18.0.1.0.0",
@@ -29,7 +33,8 @@
         "views/sale_order.xml",
         "views/account_move.xml",
         "views/stock_picking.xml",
-        "views/account_journal.xml",
+        # Esto no tiene sentido si usamos el bank_pamenth standard
+        # "views/account_journal.xml",
         "views/account_payment_mode.xml",
     ],
     "installable": True,
