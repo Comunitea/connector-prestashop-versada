@@ -260,6 +260,8 @@ class PrestashopBackend(models.Model):
                     importer.run()
             self.env["prestashop.account.tax.group"].import_batch(backend)
             self.env["prestashop.sale.order.state"].import_batch(backend)
+            # Agregar sincronización de categorías de partner
+            self.env["prestashop.res.partner.category"].import_batch(backend)
         return True
 
     def _check_connection(self):
