@@ -200,7 +200,12 @@ class AddressImportMapper(Component):
     def type(self, record):
         # do not set 'contact', otherwise the address fields are shared with
         # the parent
-        return {"type": record.get("address_type", "other")}
+        address_type = record.get("address_type", "other")
+        if address_type == 1:
+            address_type = "invoice"
+        elif address_type == 2:
+            address_type = "delivery"
+        return {"type": address_type}
 
 
 class AddressImporter(Component):
