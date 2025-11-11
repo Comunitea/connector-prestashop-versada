@@ -16,6 +16,8 @@ _logger = logging.getLogger(__name__)
 class ProductImage(models.Model):
     _inherit = "base_multi_image.image"
 
+    load_from = fields.Char(string="Load from")
+
     prestashop_bind_ids = fields.One2many(
         comodel_name="prestashop.product.image",
         inverse_name="odoo_id",
