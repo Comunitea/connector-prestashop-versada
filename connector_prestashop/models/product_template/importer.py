@@ -374,12 +374,12 @@ class TemplateMapper(Component):
         taxes = self._get_tax_ids(record)
         return {"taxes_id": [(6, 0, taxes.ids)]}
 
-    @mapping
-    def detailed_type(self, record):
-        # The same if the product is a virtual one in prestashop.
-        if record["type"]["value"] and record["type"]["value"] == "virtual":
-            return {"detailed_type": "service"}
-        return {"detailed_type": "product"}
+    #@mapping
+    #def detailed_type(self, record):
+    #    # The same if the product is a virtual one in prestashop.
+    #    if record["type"]["value"] and record["type"]["value"] == "virtual":
+    #        return {"detailed_type": "service"}
+    #    return {"detailed_type": "product"}
 
     # TODO FIXME
     #    @mapping

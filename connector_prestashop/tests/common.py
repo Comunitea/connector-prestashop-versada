@@ -331,7 +331,7 @@ class PrestashopTransactionCase(TransactionCase):
         product = self.env["product.product"].create(
             {
                 "name": name,
-                "detailed_type": "product",
+                #"detailed_type": "product",
             }
         )
         template = product.product_tmpl_id
