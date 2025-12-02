@@ -254,7 +254,8 @@ class ProductCombinationMapper(Component):
     def product_template_attribute_value_ids(self, record):
         results = []
         for tmpl_attr_value in self._get_option_value(record):
-            results.append(tmpl_attr_value.id)
+            if tmpl_attr_value and tmpl_attr_value.id:
+                results.append(tmpl_attr_value.id)
         return {"product_template_attribute_value_ids": [(6, 0, results)]}
 
     @mapping
