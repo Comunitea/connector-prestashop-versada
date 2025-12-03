@@ -360,9 +360,7 @@ class SaleOrderImporter(Component):
                 "prestashop.address",
                 address_type="invoice",
             )
-        ctx = self.env.context.copy()
-        ctx['update_delivery_shipping_partner'] = True
-        self.with_context(ctx)._import_dependency(
+        self._import_dependency(
             record["id_address_delivery"],
             "prestashop.address",
             # it is important to be sure that delivery address is updated
