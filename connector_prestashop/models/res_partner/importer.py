@@ -205,6 +205,8 @@ class AddressImportMapper(Component):
             address_type = "invoice"
         elif address_type == "2":
             address_type = "delivery"
+        else:
+            address_type = "other"
         return {"type": address_type}
 
 
