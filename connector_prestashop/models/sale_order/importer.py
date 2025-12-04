@@ -316,21 +316,6 @@ class SaleOrderImportMapper(Component):
             if k in self.env["sale.order"]._fields.keys()
         }
         values.update(sale_vals)
-        presta_line_list = []
-        for line_vals_command in values["prestashop_order_line_ids"]:
-            if line_vals_command[0] not in (0, 1):  # create or update values
-                continue
-            presta_line_vals = line_vals_command[2]
-            line_vals = {
-                k: v
-                for k, v in presta_line_vals.items()
-                if k in self.env["sale.order.line"]._fields.keys()
-            }
-            presta_line_vals.update(line_vals)
-            presta_line_list.append(
-                (line_vals_command[0], line_vals_command[1], presta_line_vals)
-            )
-        values["prestashop_order_line_ids"] = presta_line_list
         return values
 
 
