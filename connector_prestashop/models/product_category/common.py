@@ -13,6 +13,7 @@ class ProductCategory(models.Model):
         inverse_name="odoo_id",
         string="PrestaShop Bindings",
     )
+    name = fields.Char(translate=True)
 
 
 class PrestashopProductCategory(models.Model):

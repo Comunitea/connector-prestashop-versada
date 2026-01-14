@@ -35,9 +35,45 @@ class ProductCategoryMapper(Component):
 
     @mapping
     def name(self, record):
-        if record["name"] is None:
-            return {"name": ""}
-        return {"name": record["name"]}
+        name = None
+        if "language" in record["name"]:
+            language_binder = self.binder_for("prestashop.res.lang")
+            languages = record["name"]["language"]
+            if not isinstance(languages, list):
+                languages = [languages]
+            for lang in languages:
+                erp_language = language_binder.to_internal(lang["attrs"]["id"])
+                if not erp_language:
+                    continue
+                if erp_language.code == "en_US":
+                    name = lang["value"]
+                    break
+            if name is None:
+                name = languages[0]["value"]
+        else:
+            name = record["name"]
+        return {"name": name}
+
+    @mapping
+    def description(self, record):
+        description = None
+        if "language" in record["description"]:
+            language_binder = self.binder_for("prestashop.res.lang")
+            languages = record["description"]["language"]
+            if not isinstance(languages, list):
+                languages = [languages]
+            for lang in languages:
+                erp_language = language_binder.to_internal(lang["attrs"]["id"])
+                if not erp_language:
+                    continue
+                if erp_language.code == "en_US":
+                    description = lang["value"]
+                    break
+            if description is None:
+                description = languages[0]["value"]
+        else:
+            description = record["description"]
+        return {"description": description}
 
     #     @mapping
     #     def backend_id(self, record):
