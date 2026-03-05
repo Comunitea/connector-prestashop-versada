@@ -399,6 +399,17 @@ class TemplateMapper(Component):
             visibility = "none"
         return {"visibility": visibility}
 
+    @mapping
+    def product_brand_id(self, record):
+        if record.get("id_manufacturer") and record["id_manufacturer"] != "0":
+            binder = self.binder_for("prestashop.manufacturer")
+            brand = binder.to_internal(
+                record["id_manufacturer"],
+                unwrap=True,
+            )
+            if brand:
+                return {"product_brand_id": brand.id}
+        return {}
 
 class FeaturesProductImportMapper(Component):
     # To extend in connector_prestashop_feature module. In this way we
@@ -414,8 +425,6 @@ class FeaturesProductImportMapper(Component):
 
 
 class ManufacturerProductImportMapper(Component):
-    # To extend in connector_prestashop_manufacturer module. In this way we
-    # dependencies on other modules like product_manufacturer
     _name = "prestashop.manufacturer.product.template.mapper"
     _inherit = "prestashop.product.template.mapper"
     _apply_on = "prestashop.product.template"
@@ -423,6 +432,14 @@ class ManufacturerProductImportMapper(Component):
 
     @mapping
     def extras_manufacturer(self, record):
+        if record.get("id_manufacturer") and record["id_manufacturer"] != "0":
+            binder = self.binder_for("prestashop.manufacturer")
+            brand = binder.to_internal(
+                record["id_manufacturer"],
+                unwrap=True,
+            )
+            if brand:
+                return {"product_brand_id": brand.id}
         return {}
 
 
@@ -799,15 +816,16 @@ class ProductTemplateImporter(Component):
 
 
 class ManufacturerProductDependency(Component):
-    # To extend in connector_prestashop_feature module. In this way we
-    # dependencies on other modules like product_manufacturer
     _name = "prestashop.product.template.manufacturer.importer"
     _inherit = "prestashop.product.template.importer"
     _apply_on = "prestashop.product.template"
     _usage = "manufacturer.product.importer"
 
     def import_manufacturer(self, manufacturer_id):
-        return
+        if manufacturer_id and manufacturer_id != "0":
+            self._import_dependency(
+                manufacturer_id, "prestashop.manufacturer"
+            )
 
 
 class ProductTemplateBatchImporter(Component):

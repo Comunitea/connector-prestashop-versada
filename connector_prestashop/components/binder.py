@@ -43,4 +43,5 @@ class PrestashopModelBinder(Component):
         "prestashop.product.supplierinfo",
         "prestashop.mail.message",
         "prestashop.groups.pricelist",
+        "prestashop.manufacturer",
     ]

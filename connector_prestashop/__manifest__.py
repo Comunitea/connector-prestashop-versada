@@ -9,6 +9,7 @@
         "account_payment_mode",
         "product_multi_category",  # oca/product-attribute
         "product_multi_image",  # oca/product-attribute
+        "product_brand",  # oca/product-attribute
         "connector_ecommerce",  # oca/connector-ecommerce
         "purchase",
     ],
