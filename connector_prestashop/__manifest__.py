@@ -44,6 +44,7 @@
         "views/prestashop_backend_view.xml",
         "views/product_view.xml",
         "views/product_category_view.xml",
+        "views/manufacturer_view.xml",
         "views/image_view.xml",
         "views/delivery_view.xml",
         "views/connector_prestashop_menu.xml",
